@@ -1,1 +1,3 @@
-# CCS_Capstone
+# CCS Capstone
+
+Repository for the CCS Capstone Team
