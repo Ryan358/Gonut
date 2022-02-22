@@ -8,5 +8,7 @@
 *.log
 *.log.*
 *.sig
+*.vscode
+*.idea
 pkg/
 src/
