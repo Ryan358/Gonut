@@ -9,7 +9,7 @@ if not _pi.connected:
 # This has a value of 480 for historical reasons/to maintain compatibility with
 # older libraries for other Pololu boards (which used WiringPi to set up the
 # hardware PWM directly).
-_max_speed = 480
+_max_speed = 255
 MAX_SPEED = _max_speed
 
 _pin_M1FLT = 8
@@ -21,6 +21,7 @@ _pin_M2EN = 27
 _pin_M1DIR = 10
 _pin_M2DIR = 9
 
+
 class Motor(object):
     MAX_SPEED = _max_speed
 
@@ -30,8 +31,8 @@ class Motor(object):
         self.en_pin = en_pin
         self.flt_pin = flt_pin
 
-        _pi.set_pull_up_down(flt_pin, pigpio.PUD_UP) # make sure FLT is pulled up
-        _pi.write(en_pin, 1) # enable driver by default
+        _pi.set_pull_up_down(flt_pin, pigpio.PUD_UP)  # make sure FLT is pulled up
+        _pi.write(en_pin, 1)  # enable driver by default
 
     def setSpeed(self, speed):
         if speed < 0:
@@ -44,8 +45,8 @@ class Motor(object):
             speed = MAX_SPEED
 
         _pi.write(self.dir_pin, dir_value)
-        _pi.hardware_PWM(self.pwm_pin, 20000, int(speed * 6250 / 3));
-          # 20 kHz PWM, duty cycle in range 0-1000000 as expected by pigpio
+        _pi.set_PWM_dutycycle(self.pwm_pin, speed);
+        # 20 kHz PWM, duty cycle in range 0-1000000 as expected by pigpio
 
     def enable(self):
         _pi.write(self.en_pin, 1)
@@ -55,6 +56,7 @@ class Motor(object):
 
     def getFault(self):
         return not _pi.read(self.flt_pin)
+
 
 class Motors(object):
     MAX_SPEED = _max_speed
@@ -85,5 +87,6 @@ class Motors(object):
         _pi.stop()
         _pi = pigpio.pi()
         self.setSpeeds(0, 0)
+
 
 front_motors = Motors()
