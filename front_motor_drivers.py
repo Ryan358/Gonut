@@ -45,7 +45,7 @@ class Motor(object):
             speed = MAX_SPEED
 
         _pi.write(self.dir_pin, dir_value)
-        _pi.set_PWM_dutycycle(self.pwm_pin, speed);
+        _pi.set_PWM_dutycycle(self.pwm_pin, speed)
         # 20 kHz PWM, duty cycle in range 0-1000000 as expected by pigpio
 
     def enable(self):
