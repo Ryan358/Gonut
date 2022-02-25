@@ -1,5 +1,5 @@
-import keyboard
 from __future__ import print_function
+import keyboard
 import time
 from front_motor_drivers import front_motors, MAX_SPEED
 
@@ -33,7 +33,7 @@ while True:
     event = keyboard.read_event()
     try:
         if event.event_type == keyboard.KEY_DOWN and event.name == 'w':
-            print('space was pressed')
+            print('forward')
             forward()
         else:
             coast()

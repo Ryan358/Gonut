@@ -33,22 +33,22 @@ btn4.pull = digitalio.Pull.DOWN
 while True:
     if btn1.value:
         print("button 1 pressed")
-        keyboard.press(Keycode.CONTROL, Keycode.C)
+        keyboard.press(Keycode.W)
         time.sleep(0.1)
-        keyboard.release(Keycode.CONTROL, Keycode.C)
+        keyboard.release(Keycode.W)
     if btn2.value:
         print("button 2 pressed")
-        keyboard.press(Keycode.CONTROL, Keycode.V)
+        keyboard.press(Keycode.D)
         time.sleep(0.1)
-        keyboard.release(Keycode.CONTROL, Keycode.V)
+        keyboard.release(Keycode.D)
     if btn3.value:
         print("button 3 pressed")
-        keyboard.press(Keycode.WINDOWS, Keycode.SHIFT, Keycode.S)
+        keyboard.press(Keycode.S)
         time.sleep(0.1)
-        keyboard.release(Keycode.WINDOWS, Keycode.SHIFT, Keycode.S)
+        keyboard.release(Keycode.S)
     if btn4.value:
         print("button 4 pressed")
-        keyboard.press(Keycode.ALT, Keycode.TAB)
+        keyboard.press(Keycode.A)
         time.sleep(0.1)
-        keyboard.release(Keycode.ALT, Keycode.TAB)
+        keyboard.release(Keycode.A)
     time.sleep(0.1)
