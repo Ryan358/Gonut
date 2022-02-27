@@ -19,6 +19,7 @@ def raiseIfFault():
 def forward():
     front_motors.enable()
     front_motors.motor2.setSpeed(MAX_SPEED)
+    front_motors.motor1.setSpeed(MAX_SPEED)
     raiseIfFault()
     print('Motor running')
     time.sleep(0.002)
@@ -33,7 +34,6 @@ while True:
     event = keyboard.read_event()
     try:
         if event.event_type == keyboard.KEY_DOWN and event.name == 'w':
-            print('forward')
             forward()
         else:
             coast()
