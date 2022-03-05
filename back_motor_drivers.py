@@ -12,14 +12,14 @@ if not _pi.connected:
 _max_speed = 255
 MAX_SPEED = _max_speed
 
-_pin_M1FLT = 8
-_pin_M2FLT = 7
-_pin_M1PWM = 11
-_pin_M2PWM = 21
-_pin_M1EN = 17
-_pin_M2EN = 27
-_pin_M1DIR = 10
-_pin_M2DIR = 9
+_pin_M1FLT = 5
+_pin_M2FLT = 6
+_pin_M1PWM = 16
+_pin_M2PWM = 20
+_pin_M1EN = 22
+_pin_M2EN = 23
+_pin_M1DIR = 24
+_pin_M2DIR = 25
 
 
 class Motor(object):
@@ -46,7 +46,6 @@ class Motor(object):
 
         _pi.write(self.dir_pin, dir_value)
         _pi.set_PWM_dutycycle(self.pwm_pin, speed)
-        # 20 kHz PWM, duty cycle in range 0-1000000 as expected by pigpio
 
     def enable(self):
         _pi.write(self.en_pin, 1)
@@ -89,4 +88,4 @@ class Motors(object):
         self.setSpeeds(0, 0)
 
 
-front_motors = Motors()
+back_motors = Motors()
