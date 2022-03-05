@@ -7,7 +7,7 @@ import keyboard
 from back_motor_drivers import back_motors, MAX_SPEED
 from front_motor_drivers import front_motors, MAX_SPEED
 
-throttle = 0.75
+throttle = 0.50
 
 
 class DriverFault(Exception):
@@ -28,10 +28,6 @@ def raiseIfFault():
 
 def forward():
     front_motors.enable()
-<<<<<<< HEAD
-    front_motors.motor2.setSpeed(MAX_SPEED)
-    front_motors.motor1.setSpeed(MAX_SPEED)
-=======
     back_motors.enable()
     front_motors.motor1.setSpeed(throttle * MAX_SPEED)
     front_motors.motor2.setSpeed(throttle * MAX_SPEED)
@@ -45,10 +41,10 @@ def forward():
 def backward():
     front_motors.enable()
     back_motors.enable()
-    front_motors.motor1.setSpeed(-throttle * MAX_SPEED)
-    front_motors.motor2.setSpeed(-throttle * MAX_SPEED)
-    back_motors.motor1.setSpeed(-throttle * MAX_SPEED)
-    back_motors.motor2.setSpeed(-throttle * MAX_SPEED)
+    front_motors.motor1.setSpeed(throttle * -MAX_SPEED)
+    front_motors.motor2.setSpeed(throttle * -MAX_SPEED)
+    back_motors.motor1.setSpeed(throttle * -MAX_SPEED)
+    back_motors.motor2.setSpeed(throttle * -MAX_SPEED)
     raiseIfFault()
     print('Motors running')
     time.sleep(0.002)
@@ -61,7 +57,6 @@ def right():
     front_motors.motor2.setSpeed(-throttle * MAX_SPEED)
     back_motors.motor1.setSpeed(-throttle * MAX_SPEED)
     back_motors.motor2.setSpeed(throttle * MAX_SPEED)
->>>>>>> 545580903b7b0d43874c76d3b905ba39d4360f88
     raiseIfFault()
     print('Motors running')
     time.sleep(0.002)
@@ -84,6 +79,8 @@ def coast():
     back_motors.disable()
 
 
+front_motors.disable()
+back_motors.disable()
 while True:
     # Wait for the next event.
     event = keyboard.read_event()
