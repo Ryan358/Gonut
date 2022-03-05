@@ -14,8 +14,8 @@ MAX_SPEED = _max_speed
 
 _pin_M1FLT = 5
 _pin_M2FLT = 6
-_pin_M1PWM = 12
-_pin_M2PWM = 13
+_pin_M1PWM = 16
+_pin_M2PWM = 20
 _pin_M1EN = 22
 _pin_M2EN = 23
 _pin_M1DIR = 24
