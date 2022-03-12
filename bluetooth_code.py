@@ -20,7 +20,8 @@ btn3_pin = board.D9
 btn4_pin = board.D6
 btn5_pin = board.D5
 
-keyboard = Keyboard(usb_hid.devices)
+hid = HIDService()
+keyboard = Keyboard(hid.devices)
 
 btn1 = digitalio.DigitalInOut(btn1_pin)
 btn1.direction = digitalio.Direction.INPUT
@@ -41,9 +42,6 @@ btn4.pull = digitalio.Pull.DOWN
 btn5 = digitalio.DigitalInOut(btn5_pin)
 btn5.direction = digitalio.Direction.INPUT
 btn5.pull = digitalio.Pull.DOWN
-
-
-hid = HIDService()
 
 device_info = DeviceInfoService(software_revision=adafruit_ble.__version__,
                                 manufacturer="Adafruit Industries")
@@ -69,30 +67,24 @@ while True:
     while ble.connected:
         if btn1.value:
             print("button 1 pressed")
-            keyboard.press(Keycode.W)
+            keyboard.send(Keycode.W)
             time.sleep(0.1)
-            keyboard.release(Keycode.W)
         if btn2.value:
             print("button 2 pressed")
-            keyboard.press(Keycode.D)
+            keyboard.send(Keycode.D)
             time.sleep(0.1)
-            keyboard.release(Keycode.D)
         if btn3.value:
             print("button 3 pressed")
-            keyboard.press(Keycode.S)
+            keyboard.send(Keycode.S)
             time.sleep(0.1)
-            keyboard.release(Keycode.S)
         if btn4.value:
             print("button 4 pressed")
-            keyboard.press(Keycode.A)
+            keyboard.send(Keycode.A)
             time.sleep(0.1)
-            keyboard.release(Keycode.A)
         if btn5.value:
             print("button 5 pressed")
-            keyboard.press(Keycode.Q)
+            keyboard.send(Keycode.Q)
             time.sleep(0.1)
-            keyboard.release(Keycode.Q)
     time.sleep(0.1)
     
 ble.start_advertising(advertisement)
-
