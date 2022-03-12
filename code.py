@@ -10,7 +10,7 @@ btn1_pin = board.GP15
 btn2_pin = board.GP14
 btn3_pin = board.GP13
 btn4_pin = board.GP12
-
+btn5_pin = board.GP11
 
 keyboard = Keyboard(usb_hid.devices)
 
@@ -29,6 +29,10 @@ btn3.pull = digitalio.Pull.DOWN
 btn4 = digitalio.DigitalInOut(btn4_pin)
 btn4.direction = digitalio.Direction.INPUT
 btn4.pull = digitalio.Pull.DOWN
+
+btn5 = digitalio.DigitalInOut(btn5_pin)
+btn5.direction = digitalio.Direction.INPUT
+btn5.pull = digitalio.Pull.DOWN
 
 while True:
     if btn1.value:
@@ -51,4 +55,9 @@ while True:
         keyboard.press(Keycode.A)
         time.sleep(0.1)
         keyboard.release(Keycode.A)
+    if btn5.value:
+        print("button 5 pressed")
+        keyboard.press(Keycode.Q)
+        time.sleep(0.1)
+        keyboard.release(Keycode.Q)
     time.sleep(0.1)
