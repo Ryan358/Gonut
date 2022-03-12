@@ -67,24 +67,29 @@ while True:
     while ble.connected:
         if btn1.value:
             print("button 1 pressed")
-            keyboard.send(Keycode.W)
+            keyboard.press(Keycode.W)
             time.sleep(0.1)
+            keyboard.release(Keycode.W)
         if btn2.value:
             print("button 2 pressed")
-            keyboard.send(Keycode.D)
+            keyboard.press(Keycode.D)
             time.sleep(0.1)
+            keyboard.release(Keycode.D)
         if btn3.value:
             print("button 3 pressed")
-            keyboard.send(Keycode.S)
+            keyboard.press(Keycode.S)
             time.sleep(0.1)
+            keyboard.release(Keycode.S)
         if btn4.value:
             print("button 4 pressed")
-            keyboard.send(Keycode.A)
+            keyboard.press(Keycode.A)
             time.sleep(0.1)
+            keyboard.release(Keycode.A)
         if btn5.value:
             print("button 5 pressed")
-            keyboard.send(Keycode.Q)
+            keyboard.press(Keycode.Q)
             time.sleep(0.1)
-    time.sleep(0.1)
+            keyboard.release(Keycode.Q)
+        time.sleep(0.1)
     
 ble.start_advertising(advertisement)
