@@ -48,7 +48,7 @@ def coast():
 def forward():
     front_motors.enable()
     back_motors.enable()
-    red.off
+    red.off()
     green.on()
     front_right.setSpeed(throttle * MAX_SPEED)
     front_left.setSpeed(throttle * MAX_SPEED)
@@ -128,7 +128,7 @@ def spin():
     
 
 blue.blink()
-time.sleep(40)
+time.sleep(2)
 blue.off()
 while True:
     blue.on()
@@ -137,6 +137,7 @@ while True:
     event = keyboard.read_event()
     try:
         if event.event_type == keyboard.KEY_DOWN and event.name == 'w':
+            print('forward')
             forward()
         elif event.event_type == keyboard.KEY_DOWN and event.name == 'a':
             print('left')
