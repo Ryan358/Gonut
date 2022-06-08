@@ -1,9 +1,12 @@
+"""Testing code for a joystick. Not currently in use, though could work well with a serial connection
+or by sending keyboard commands if a threshold is met."""
+
 from machine import Pin, ADC
 import utime
 
 xAxis = ADC(Pin(27))
 yAxis = ADC(Pin(26))
-button = Pin(16,Pin.IN, Pin.PULL_UP)
+button = Pin(16, Pin.IN, Pin.PULL_UP)
 
 while True:
     xValue = xAxis.read_u16()

@@ -1,3 +1,6 @@
+"""This is code for the wired version of the button box. This must be saved as
+code.py on the Pico for it to operate. This is not used in the final version."""
+
 import time
 import digitalio
 import board
@@ -34,6 +37,8 @@ btn5 = digitalio.DigitalInOut(btn5_pin)
 btn5.direction = digitalio.Direction.INPUT
 btn5.pull = digitalio.Pull.DOWN
 
+
+# This loop simulates keyboard input.
 while True:
     if btn1.value:
         print("button 1 pressed")

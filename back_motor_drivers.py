@@ -1,3 +1,7 @@
+"""These modules were provided by Pololu to control the drivers. The only changes I made were changing the
+pin assignments and the max speed to 255 because we are using software PWM, not hardware PWM.
+Go to https://www.pololu.com/product/3750 for more info."""
+
 import pigpio
 
 _pi = pigpio.pi()

@@ -1,3 +1,5 @@
+"""This is the default code for the bluetooth button box. It must be saved as code.py on the
+Featherboard to operate. This is what is running on the final version."""
 import time
 import digitalio
 import board
@@ -43,6 +45,7 @@ btn5 = digitalio.DigitalInOut(btn5_pin)
 btn5.direction = digitalio.Direction.INPUT
 btn5.pull = digitalio.Pull.DOWN
 
+# Initialize Bluetooth connection
 device_info = DeviceInfoService(software_revision=adafruit_ble.__version__,
                                 manufacturer="Adafruit Industries")
 advertisement = ProvideServicesAdvertisement(hid)
@@ -58,7 +61,7 @@ else:
     print("already connected")
     print(ble.connections)
 
-
+# This loop simulates keyboard input
 while True:
     while not ble.connected:
         pass

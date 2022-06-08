@@ -1,4 +1,6 @@
 #! /usr/bin/env python
+
+"""This is the main code that controls the vehicle. This runs on a cronjob on the Pi on startup."""
 from __future__ import print_function
 
 import time
@@ -26,6 +28,7 @@ red.off()
 front_motors.disable()
 back_motors.disable()
 
+
 class DriverFault(Exception):
     def __init__(self, driver_num):
         self.driver_num = driver_num
@@ -41,10 +44,16 @@ def raiseIfFault():
     if back_motors.motor2.getFault():
         raise DriverFault(2)
 
+
 def coast():
+    """This disables the motors instead of braking, so it's not too jolty."""
     front_motors.disable()
     back_motors.disable()
-    
+
+
+# All of these functions are the same: enable the motors, drive them the right directions for a bit, then they coast.
+# The directions are probably wrong since the wiring kept getting messed up, so just test and change directions of each
+# motor if necessary.
 def forward():
     front_motors.enable()
     back_motors.enable()
@@ -60,6 +69,7 @@ def forward():
     green.off()
     red.on()
     coast()
+
 
 def backward():
     front_motors.enable()
@@ -94,6 +104,7 @@ def left():
     red.on()
     coast()
 
+
 def right():
     front_motors.enable()
     back_motors.enable()
@@ -110,6 +121,7 @@ def right():
     red.on()
     coast()
 
+
 def spin():
     front_motors.enable()
     back_motors.enable()
@@ -125,16 +137,21 @@ def spin():
     green.off()
     red.on()
     coast()
-    
+
 
 blue.blink()
-time.sleep(2)
+time.sleep(40)
+# Don't ask me why this is here. Something to do with the boot sequence of the Pi means
+# that if the code starts up the motors too early, they won't run. This 40-second delay is the best I can do without
+# altering the Pi boot sequence. Turning off "boot to desktop" will help, but I can't do that without losing the
+# ability to edit remotely (which I've disabled anyway by now), so good luck.
 blue.off()
 while True:
     blue.on()
     # Wait for the next event
-    time.sleep(0.5)
+    time.sleep(delay)  # This prevents kids from holding down a button and zooming away
     event = keyboard.read_event()
+    # This just checks for keyboard input and then drives. Pretty simple
     try:
         if event.event_type == keyboard.KEY_DOWN and event.name == 'w':
             print('forward')
@@ -158,8 +175,6 @@ while True:
             break
         else:
             coast()
-            
-    
-    
+
     except DriverFault as e:
         print("Driver %s fault!" % e.driver_num)
